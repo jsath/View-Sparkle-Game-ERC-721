@@ -13,7 +13,7 @@ const Connect = (props) => {
 
     //alchemy config 
     const settings = {
-        apiKey: "kU2cc_5Z54xn6socU5WA4Is8IPYFI7-P",
+        apiKey: process.env.REACT_APP_ALCHEMY_KEY,
         network: Network.ETH_MAINNET,
     };
     const connection = new Alchemy(settings);
