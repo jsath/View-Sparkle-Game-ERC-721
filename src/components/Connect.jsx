@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import '../styles.css'
-import Passes from './Passes';
 import { Alchemy, Network } from "alchemy-sdk";
-const openSea = require('../opensea.png');
+import Metamask from './Metamask';
+import View from './View';
+
 
 const Connect = (props) => {
 
@@ -60,27 +61,27 @@ const Connect = (props) => {
         })
     }
 
+    const btnStyle = {
+        backgroundColor: "rgb(0, 33, 65)",
+        color: "rgb(255,255,255)",
+        borderRadius: "25px",
+        height: "50px", 
+        width: "200px",
+        fontSize: "22px"
+    };
+
 return (
     <>
     {
-    tokens[0] ? 
-    <>
-    <h4> { tokens[0].description }</h4>
-    </>
-    : ''
-    }
-    {
-        tokens.length>1?
-        <>
-        <h1>Founders Passes</h1>
-        <Passes tokens={tokens}/>
-        </>
+        walletAddress ?
+        <View tokens={tokens}/>
         :
-        <>
-        <h3>No Founders Passes found</h3>  
-        <a href='https://opensea.io/collection/sparkle-game-founders-pass' target="_blank" rel="noopener noreferrer"><button className='button'><img src={openSea} width='60vw'/></button></a>
-        </>
+        <div>
+            <Metamask/>
+            <button onClick={getAccount} style={btnStyle}>Connect Wallet</button>
+        </div>
     }
+
     </>
 )
 }
